@@ -1,6 +1,6 @@
-import axios from 'axios';
 import './conversation.css';
 import { useEffect, useState } from 'react';
+import { axiosInstance } from '../../helper';
 
 const Conversation = ({conversation, currentUser}) => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -10,7 +10,7 @@ const Conversation = ({conversation, currentUser}) => {
         const friendId = conversation.members.find((m) => m !== currentUser._id);
         const getUser = async () => {
             try {
-                const res = await axios("/users?userId=" + friendId);
+                const res = await axiosInstance("/users?userId=" + friendId);
                 console.log(res)
                 setUser(res.data);
             } catch (err) {

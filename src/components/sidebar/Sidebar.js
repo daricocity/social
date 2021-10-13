@@ -1,10 +1,9 @@
 import './sidebar.css';
-// import {Users} from '../../dummyData';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Lock from '@material-ui/icons/Lock';
 import Chat from '@material-ui/icons/Chat';
 import { logoutCall } from '../../apiCalls';
+import { axiosInstance } from '../../helper';
 import Event from '@material-ui/icons/Event';
 import Group from '@material-ui/icons/Group';
 import School from '@material-ui/icons/School';
@@ -23,7 +22,7 @@ const Sidebar = () => {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const userList = await axios.get('/users/all/'+ currentUser._id);
+                const userList = await axiosInstance.get('/users/all/'+ currentUser._id);
                 setUsers(userList.data.sort((u1, u2) => {
                     return new Date(u2.createdAt) - new Date(u1.createdAt);
                 }));

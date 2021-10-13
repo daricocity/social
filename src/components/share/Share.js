@@ -1,7 +1,7 @@
 import './share.css';
-import axios from 'axios';
 import Room from '@material-ui/icons/Room';
 import Label from '@material-ui/icons/Label';
+import { axiosInstance } from '../../helper';
 import Cancel from '@material-ui/icons/Cancel';
 import PermMedia from '@material-ui/icons/PermMedia';
 import { useContext, useRef, useState } from 'react';
@@ -26,13 +26,13 @@ const Share = () => {
             data.append('name', filename);
             newPost.img = filename;
             try {
-                await axios.post('/upload', data);
+                await axiosInstance.post('/upload', data);
             } catch (err) {
                 console.log(err)
             }
         }
         try {
-            await axios.post('/posts', newPost);
+            await axiosInstance.post('/posts', newPost);
             window.location.reload()
         } catch (err) {
             console.log(err)

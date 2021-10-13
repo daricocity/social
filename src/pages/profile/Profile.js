@@ -1,7 +1,7 @@
 import './profile.css';
-import axios from 'axios';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
+import { axiosInstance } from '../../helper';
 import Feed from "../../components/feed/Feed";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -13,7 +13,7 @@ const Profile = () => {
     const [user, setUser] = useState({});
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`/users?username=${username}`);
+            const res = await axiosInstance.get(`/users?username=${username}`);
             setUser(res.data);
         };
         fetchUser();

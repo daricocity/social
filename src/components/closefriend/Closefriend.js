@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Closefriend = ({user}) => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
+    console.log('This is the PF: '+ PF)
     return(
         <>
             <Link to={'/profile/' + user.username} style={{textDecoration:'none', color:'#000'}}>

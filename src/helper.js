@@ -1,3 +1,10 @@
+import axios from 'axios';
+
+// Axios Handler
+export const axiosInstance = axios.create({
+    baseURL: "https://socia-api.herokuapp.com/api"
+})
+
 // Error Handler
 export const errorHandler = (err, defaulted = false) => {
     if (defaulted) {

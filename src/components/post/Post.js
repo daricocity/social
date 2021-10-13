@@ -1,24 +1,23 @@
 import './post.css';
-import axios from 'axios';
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
+import { axiosInstance } from '../../helper';
 import MoreVert from '@material-ui/icons/MoreVert';
 import likeImg from '../../assets/icons/w-icon-3.png';
 import love from '../../assets/icons/price-icon-2.png';
 import { AuthContext } from '../../context/AuthContext';
 import { useState, useEffect, useContext } from 'react';
-// import { Users } from '../../dummyData';
 
 const Post = ({post}) => {
     const [user, setUser] = useState({});
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER
     const [isLiked, setIsLiked] = useState(false);
     const [like, setLike] = useState(post.likes.length);
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER
     const { user:currentUser } = useContext(AuthContext); // use 'user' as 'current user'
 
     const likeHandler = () => {
         try {
-            axios.put('posts/' + post._id + '/like', {userId:currentUser._id})
+            axiosInstance.put('posts/' + post._id + '/like', {userId:currentUser._id})
         } catch (error) {
             
         }
@@ -32,7 +31,7 @@ const Post = ({post}) => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`/users?userId=${post.userId}`);
+            const res = await axiosInstance.get(`/users?userId=${post.userId}`);
             setUser(res.data)
         };
         fetchUser();

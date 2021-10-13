@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axiosInstance } from './helper';
 
 // LOGIN
 export const loginCall = async (userCredentials, dispatch) => {
@@ -6,7 +6,7 @@ export const loginCall = async (userCredentials, dispatch) => {
         type: 'LOGIN_START'
     });
     try {
-        const res = await axios.post('auth/login', userCredentials);
+        const res = await axiosInstance.post('auth/login', userCredentials);
         dispatch({
             type: 'LOGIN_SUCCESS',
             payload: res.data

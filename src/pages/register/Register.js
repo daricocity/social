@@ -1,8 +1,8 @@
 import './register.css'
-import axios from 'axios';
 import { useRef } from 'react';
 import {Link} from 'react-router-dom';
 import { useHistory } from 'react-router';
+import { axiosInstance } from '../../helper';
 
 const Register = () => {
     const email = useRef();
@@ -21,7 +21,7 @@ const Register = () => {
                 password: password.current.value,
             }
             try {
-                await axios.post('/auth/register', user);
+                await axiosInstance.post('/auth/register', user);
                 history.push('/login');
 
             } catch (err) {

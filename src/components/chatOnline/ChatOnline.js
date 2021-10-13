@@ -1,6 +1,6 @@
 import './chatOnline.css';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { axiosInstance } from '../../helper';
 
 const ChatOnline = ({onlineUsers, currentId, setCurrentChat}) => {
     const [friends, setFriends] = useState([]);
@@ -10,7 +10,7 @@ const ChatOnline = ({onlineUsers, currentId, setCurrentChat}) => {
     // GET FRIENDS
     useEffect(() => {
         const getFrineds = async () => {
-            const res = await axios.get("/users/friends/" + currentId);
+            const res = await axiosInstance.get("/users/friends/" + currentId);
             setFriends(res.data);
         };
         getFrineds();
@@ -23,7 +23,7 @@ const ChatOnline = ({onlineUsers, currentId, setCurrentChat}) => {
 
     const handleClick = async (user) => {
         try {
-            const res = await axios.get(`/conversations/find/${currentId}/${user._id}`);
+            const res = await axiosInstance.get(`/conversations/find/${currentId}/${user._id}`);
             setCurrentChat(res.data);
         } catch (err) {
             console.log(err)
