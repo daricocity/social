@@ -20,7 +20,7 @@ const Messenger = () => {
     const [arrivalMessage, setArrivalMessage] = useState(null);
 
     useEffect(() => {
-        socket.current = io("ws://localhost:8900");
+        socket.current = io("ws:http://socia-socket.herokuapp.com/");
 
         // Get Messages from socket server
         socket.current.on("getMessage", data => {
